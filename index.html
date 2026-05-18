@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studio Lite Community</title>
+  <title>Studio X Community</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -66,51 +66,133 @@
     <symbol id="icon-close" viewBox="0 0 24 24">
       <path d="M18 6L6 18M6 6l12 12" />
     </symbol>
-    <symbol id="icon-join" viewBox="0 0 24 24">
-      <path d="M12 5v14" />
-      <path d="M5 12h14" />
-      <path d="M16 7l5 5-5 5" />
+    <symbol id="icon-share" viewBox="0 0 24 24">
+      <path d="M16 8a3 3 0 1 0-2.8-4" />
+      <path d="M6 13a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+      <path d="M16 14l-6-3" />
+      <path d="M16 16l-6 3" />
+      <path d="M16 8l-6 3" />
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21v-1a8 8 0 0 1 16 0v1" />
     </symbol>
     <symbol id="icon-logout" viewBox="0 0 24 24">
       <path d="M10 17l1 1a2 2 0 0 0 3-1.7V7.7A2 2 0 0 0 11 6l-1 1" />
       <path d="M14 12H3" />
       <path d="M7 8l-4 4 4 4" />
     </symbol>
-    <symbol id="icon-rocket" viewBox="0 0 24 24">
-      <path d="M5 15c0-7 6-11 14-12-1 8-5 14-12 14l-2 2-2-2 2-2z" />
-      <path d="M14 10a2 2 0 1 0 0.01 0" />
+    <symbol id="icon-edit" viewBox="0 0 24 24">
+      <path d="M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4z" />
+      <path d="M13.5 6.5l4 4" />
+    </symbol>
+    <symbol id="icon-upload" viewBox="0 0 24 24">
+      <path d="M12 16V4" />
+      <path d="M8 8l4-4 4 4" />
+      <path d="M4 16v4h16v-4" />
+    </symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24">
+      <path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z" />
+    </symbol>
+    <symbol id="icon-badge-check" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M9 12.5l2 2 4-5" />
+    </symbol>
+    <symbol id="icon-warning" viewBox="0 0 24 24">
+      <path d="M12 3l10 18H2L12 3z" />
+      <path d="M12 9v5" />
+      <path d="M12 17h.01" />
+    </symbol>
+    <symbol id="icon-ban" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M7 7l10 10" />
+    </symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
     </symbol>
   </svg>
 
+  <div class="auth-screen" id="authScreen">
+    <div class="auth-card">
+      <div class="auth-brand">
+        <div class="brand-mark">SX</div>
+        <div>
+          <h1>Studio X Community</h1>
+          <p>Sign up or log in to continue.</p>
+        </div>
+      </div>
+
+      <div class="auth-switch">
+        <button type="button" class="auth-switch-btn active" data-auth-mode="login">Login</button>
+        <button type="button" class="auth-switch-btn" data-auth-mode="signup">Sign up</button>
+      </div>
+
+      <form id="authForm" class="auth-form">
+        <div class="field auth-login-field">
+          <label for="loginIdentity">Email or username</label>
+          <input id="loginIdentity" type="text" autocomplete="username" placeholder="you@example.com or PHBuilderman" />
+        </div>
+
+        <div class="field auth-login-field">
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Your password" />
+        </div>
+
+        <div class="auth-signup-fields" hidden>
+          <div class="field">
+            <label for="signupEmail">Email</label>
+            <input id="signupEmail" type="email" autocomplete="email" placeholder="you@example.com" />
+          </div>
+          <div class="field">
+            <label for="signupName">Display name</label>
+            <input id="signupName" type="text" autocomplete="nickname" placeholder="Your community name" />
+          </div>
+          <div class="field">
+            <label for="signupPassword">Password</label>
+            <input id="signupPassword" type="password" autocomplete="new-password" placeholder="Create a password" />
+          </div>
+          <div class="field">
+            <label for="signupConfirm">Confirm password</label>
+            <input id="signupConfirm" type="password" autocomplete="new-password" placeholder="Repeat your password" />
+          </div>
+        </div>
+
+        <button type="submit" class="primary-btn auth-submit" id="authSubmit">
+          <svg><use href="#icon-user"></use></svg>
+          Log in
+        </button>
+
+        <p class="auth-note">
+          Owner account is preloaded as <strong>PHBuilderman</strong>. The app stores accounts, chats, roles, and profile changes in your browser.
+        </p>
+      </form>
+    </div>
+  </div>
+
   <div class="app-shell">
     <aside class="server-rail" aria-label="Servers">
-      <button class="server-pill active" title="Studio Lite Community">
-        <span>SL</span>
+      <button class="server-pill active" title="Studio X Community">
+        <span>SX</span>
       </button>
-      <button class="server-pill" title="Design Lab">
-        <span>DL</span>
+      <button class="server-pill action" id="shareServerRailBtn" title="Share server link">
+        <svg><use href="#icon-share"></use></svg>
       </button>
-      <button class="server-pill" title="Creator Hub">
-        <span>CH</span>
+      <button class="server-pill action" id="openProfileRailBtn" title="Edit profile">
+        <svg><use href="#icon-user"></use></svg>
       </button>
-
-      <div class="rail-spacer"></div>
-
-      <button class="server-pill action" id="openCreateServerRail" title="Create Server">
-        <svg><use href="#icon-plus"></use></svg>
-      </button>
-      <button class="server-pill action" id="openJoinServerRail" title="Join Server">
-        <svg><use href="#icon-join"></use></svg>
+      <button class="server-pill action hidden-admin" id="openAdminRailBtn" title="Admin panel" hidden>
+        <svg><use href="#icon-shield"></use></svg>
       </button>
     </aside>
 
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-top">
         <div class="brand">
-          <div class="brand-mark">◎</div>
+          <div class="brand-mark">SX</div>
           <div>
-            <h1>Studio Lite Community</h1>
-            <p><span class="status-dot"></span> Live now • 1.2k members</p>
+            <h1>Studio X Community</h1>
+            <p><span class="status-dot"></span><span id="memberCountLabel">0 members online</span></p>
           </div>
         </div>
 
@@ -120,13 +202,17 @@
       </div>
 
       <div class="sidebar-actions">
-        <button class="primary-btn" id="createServerBtn">
-          <svg><use href="#icon-plus"></use></svg>
-          Create Server
+        <button class="primary-btn" id="shareServerBtn">
+          <svg><use href="#icon-share"></use></svg>
+          Share Link
         </button>
-        <button class="secondary-btn" id="joinServerBtn">
-          <svg><use href="#icon-join"></use></svg>
-          Join Server
+        <button class="secondary-btn" id="openProfileBtn">
+          <svg><use href="#icon-user"></use></svg>
+          Profile
+        </button>
+        <button class="secondary-btn hidden-admin" id="openAdminBtn" hidden>
+          <svg><use href="#icon-shield"></use></svg>
+          Admin Panel
         </button>
       </div>
 
@@ -147,7 +233,7 @@
               <svg><use href="#icon-megaphone"></use></svg>
               <span># announcements</span>
             </span>
-            <span class="unread-badge">3</span>
+            <span class="unread-badge" data-unread="announcements"></span>
           </button>
 
           <button class="channel-item" data-channel="rules">
@@ -155,6 +241,7 @@
               <svg><use href="#icon-settings"></use></svg>
               <span># rules</span>
             </span>
+            <span class="unread-badge" data-unread="rules"></span>
           </button>
         </div>
 
@@ -169,6 +256,7 @@
               <svg><use href="#icon-hash"></use></svg>
               <span># general-chat</span>
             </span>
+            <span class="unread-badge" data-unread="general"></span>
           </button>
 
           <button class="channel-item" data-channel="world">
@@ -176,7 +264,7 @@
               <svg><use href="#icon-globe"></use></svg>
               <span># world-chat</span>
             </span>
-            <span class="unread-badge dot"></span>
+            <span class="unread-badge" data-unread="world"></span>
           </button>
         </div>
 
@@ -191,7 +279,7 @@
               <svg><use href="#icon-lightbulb"></use></svg>
               <span># suggestions</span>
             </span>
-            <span class="unread-badge">1</span>
+            <span class="unread-badge" data-unread="suggestions"></span>
           </button>
 
           <button class="channel-item" data-channel="media">
@@ -199,6 +287,28 @@
               <svg><use href="#icon-image"></use></svg>
               <span># media</span>
             </span>
+            <span class="unread-badge" data-unread="media"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="current-user-card" id="currentUserCard">
+          <div class="avatar avatar-lg" id="sidebarAvatar"></div>
+          <div class="current-user-meta">
+            <div class="current-user-name">
+              <span id="sidebarName">Guest</span>
+              <span class="verified-badge" id="sidebarVerified" hidden title="Verified owner">
+                <svg><use href="#icon-badge-check"></use></svg>
+              </span>
+            </div>
+            <div class="current-user-role" id="sidebarRole">Member</div>
+          </div>
+          <button class="icon-btn" id="editProfileFooterBtn" title="Edit profile">
+            <svg><use href="#icon-edit"></use></svg>
+          </button>
+          <button class="icon-btn" id="logoutBtn" title="Logout">
+            <svg><use href="#icon-logout"></use></svg>
           </button>
         </div>
       </div>
@@ -222,17 +332,21 @@
         </div>
 
         <div class="topbar-actions">
-          <button class="header-btn" id="inviteBtn">
-            <svg><use href="#icon-rocket"></use></svg>
-            Invite
+          <div class="clock-pill">
+            <svg><use href="#icon-clock"></use></svg>
+            <span id="clockLabel">--:--</span>
+          </div>
+          <button class="header-btn" id="shareServerTopBtn">
+            <svg><use href="#icon-share"></use></svg>
+            Share Link
           </button>
-          <button class="header-btn">
-            <svg><use href="#icon-users"></use></svg>
-            Members
+          <button class="header-btn hidden-admin" id="adminTopBtn" hidden>
+            <svg><use href="#icon-shield"></use></svg>
+            Admin
           </button>
-          <button class="header-btn">
-            <svg><use href="#icon-bell"></use></svg>
-            Alerts
+          <button class="header-btn" id="profileTopBtn">
+            <svg><use href="#icon-user"></use></svg>
+            Profile
           </button>
         </div>
       </header>
@@ -244,7 +358,7 @@
           </div>
           <div>
             <h3>Announcements</h3>
-            <p>Clear updates, event posts, and server notices.</p>
+            <p>Official updates, events, and server notices.</p>
           </div>
         </article>
 
@@ -253,8 +367,8 @@
             <svg><use href="#icon-users"></use></svg>
           </div>
           <div>
-            <h3>Active Members</h3>
-            <p>Live discussions across general, media, and world chat.</p>
+            <h3>Live Members</h3>
+            <p>Real accounts, roles, warnings, and moderation status.</p>
           </div>
         </article>
 
@@ -264,7 +378,7 @@
           </div>
           <div>
             <h3>Suggestions</h3>
-            <p>Share ideas and vote on the next community features.</p>
+            <p>Share ideas, post feedback, and shape the community.</p>
           </div>
         </article>
       </section>
@@ -277,18 +391,24 @@
 
         <div class="messages" id="messageList" aria-live="polite"></div>
 
+        <div class="attachment-preview" id="attachmentPreview" hidden>
+          <div class="attachment-chip">
+            <svg><use href="#icon-image"></use></svg>
+            <span id="attachmentName">image.png</span>
+          </div>
+          <button class="mini-icon-btn" id="removeAttachmentBtn" title="Remove attachment">
+            <svg><use href="#icon-close"></use></svg>
+          </button>
+        </div>
+
         <div class="composer">
-          <button class="composer-icon" id="attachBtn" title="Attach">
-            <svg><use href="#icon-plus"></use></svg>
+          <button class="composer-icon" id="attachBtn" title="Attach image">
+            <svg><use href="#icon-image"></use></svg>
           </button>
 
           <div class="composer-input-wrap">
             <input id="messageInput" type="text" placeholder="Message #announcements" autocomplete="off" />
           </div>
-
-          <button class="composer-icon" id="emojiBtn" title="Quick action">
-            <svg><use href="#icon-bell"></use></svg>
-          </button>
 
           <button class="send-btn" id="sendBtn">
             <svg><use href="#icon-send"></use></svg>
@@ -299,49 +419,117 @@
     </main>
   </div>
 
-  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
-    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
+
+  <div class="modal-overlay" id="profileModal" aria-hidden="true">
+    <div class="modal-panel modal-large" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
       <div class="modal-head">
         <div>
-          <p class="modal-kicker" id="modalKicker">Studio Lite</p>
-          <h3 id="modalTitle">Create Server</h3>
+          <p class="modal-kicker">Profile</p>
+          <h3 id="profileModalTitle">Edit your profile</h3>
         </div>
-        <button class="icon-btn" id="closeModalBtn" aria-label="Close modal">
+        <button class="icon-btn" data-close-modal="profile" aria-label="Close profile modal">
           <svg><use href="#icon-close"></use></svg>
         </button>
       </div>
 
-      <div class="modal-tabs">
-        <button class="modal-tab active" data-mode="create">Create</button>
-        <button class="modal-tab" data-mode="join">Join</button>
-      </div>
-
-      <div class="modal-body">
-        <div class="field" id="createFields">
-          <label for="serverName">Server name</label>
-          <input id="serverName" type="text" placeholder="Studio Lite HQ" />
-        </div>
-
-        <div class="field" id="joinFields" hidden>
-          <label for="serverCode">Server invite code</label>
-          <input id="serverCode" type="text" placeholder="SLC-2048" />
+      <div class="profile-layout">
+        <div class="profile-preview-card">
+          <div class="avatar avatar-xl" id="profileAvatarPreview"></div>
+          <div class="profile-preview-meta">
+            <strong id="profilePreviewName">Guest</strong>
+            <span id="profilePreviewRole">Member</span>
+          </div>
         </div>
 
         <div class="field">
-          <label for="serverNote">Optional note</label>
-          <textarea id="serverNote" rows="4" placeholder="Add a short description for your community."></textarea>
+          <label for="profileName">Display name</label>
+          <input id="profileName" type="text" placeholder="Your display name" />
         </div>
+
+        <div class="field">
+          <label for="profileBio">Bio</label>
+          <textarea id="profileBio" rows="4" placeholder="Tell people about yourself"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="profileAvatarUrl">Avatar URL</label>
+          <input id="profileAvatarUrl" type="text" placeholder="Paste an image link or use upload" />
+        </div>
+
+        <div class="profile-actions-row">
+          <button class="secondary-btn" id="uploadAvatarBtn" type="button">
+            <svg><use href="#icon-upload"></use></svg>
+            Upload avatar
+          </button>
+          <button class="ghost-btn" id="resetAvatarBtn" type="button">Reset avatar</button>
+        </div>
+
+        <input id="profileAvatarFile" type="file" accept="image/*" hidden />
       </div>
 
       <div class="modal-actions">
-        <button class="ghost-btn" id="cancelModalBtn">Cancel</button>
-        <button class="primary-btn" id="confirmModalBtn">
-          <svg><use href="#icon-plus"></use></svg>
-          Create Server
+        <button class="ghost-btn" data-close-modal="profile">Cancel</button>
+        <button class="primary-btn" id="saveProfileBtn">
+          <svg><use href="#icon-edit"></use></svg>
+          Save profile
         </button>
       </div>
     </div>
   </div>
+
+  <div class="modal-overlay" id="adminModal" aria-hidden="true">
+    <div class="modal-panel modal-wide" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+      <div class="modal-head">
+        <div>
+          <p class="modal-kicker">Admin panel</p>
+          <h3 id="adminModalTitle">Moderation and announcements</h3>
+        </div>
+        <button class="icon-btn" data-close-modal="admin" aria-label="Close admin modal">
+          <svg><use href="#icon-close"></use></svg>
+        </button>
+      </div>
+
+      <div class="admin-grid">
+        <section class="admin-card">
+          <div class="card-head">
+            <h4>Members</h4>
+            <span class="mini-label">Roles • warnings • bans</span>
+          </div>
+          <div class="admin-members" id="adminMembersList"></div>
+        </section>
+
+        <section class="admin-card">
+          <div class="card-head">
+            <h4>Announcements</h4>
+            <span class="mini-label">Post to #announcements</span>
+          </div>
+
+          <div class="field">
+            <label for="announcementText">Announcement text</label>
+            <textarea id="announcementText" rows="6" placeholder="Write a server announcement..."></textarea>
+          </div>
+
+          <div class="admin-actions">
+            <button class="primary-btn" id="sendAnnouncementBtn">
+              <svg><use href="#icon-megaphone"></use></svg>
+              Send announcement
+            </button>
+            <button class="secondary-btn" id="copyInviteBtn">
+              <svg><use href="#icon-share"></use></svg>
+              Copy invite link
+            </button>
+          </div>
+
+          <div class="admin-note">
+            Only the owner or staff can access this panel.
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <input type="file" id="messageImageInput" accept="image/*" hidden />
 
   <div class="toast-stack" id="toastStack" aria-live="polite"></div>
 
