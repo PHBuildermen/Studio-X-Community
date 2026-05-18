@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Lite Community</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Mobile Navigation Trigger Bar -->
+        <div class="mobile-header">
+            <button id="mobileMenuBtn" aria-label="Toggle Sidebar">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <span class="mobile-server-name">Studio Lite</span>
+            <button id="mobileJoinBtn" class="join-btn-sm">Join</button>
+        </div>
+
+        <!-- Backdrop for Mobile Navigation Sidebar -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Leftmost: Server Sidebar -->
+        <aside class="server-sidebar" id="serverSidebar">
+            <div class="server-icon active" data-server="studio-lite" title="Studio Lite Main">
+                <span class="server-initials">SL</span>
+            </div>
+            <div class="server-icon secondary" data-server="gaming" title="Gaming Corner">
+                <span class="server-initials">GC</span>
+            </div>
+            <div class="server-icon secondary" data-server="dev" title="Dev Hub">
+                <span class="server-initials">DH</span>
+            </div>
+            
+            <div class="sidebar-divider"></div>
+            
+            <button class="server-action-btn" id="openCreateModal" title="Create a Server">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+            <button class="server-action-btn tertiary" id="joinServerBtn" title="Join Server">
+                <i class="fa-solid fa-compass"></i>
+            </button>
+        </aside>
+
+        <!-- Center-Left: Channel List Sidebar -->
+        <aside class="channel-sidebar" id="channelSidebar">
+            <div class="channel-header">
+                <h2>Studio Lite</h2>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+
+            <div class="channel-list-scroller">
+                <!-- Category: Welcome -->
+                <div class="channel-category">
+                    <div class="category-title">
+                        <i class="fa-solid fa-chevron-down category-arrow"></i>
+                        <span>Welcome & News</span>
+                    </div>
+                    <div class="category-channels">
+                        <div class="channel-item active" data-channel="announcements">
+                            <i class="fa-solid fa-bullhorn channel-icon"></i>
+                            <span class="channel-name">announcements</span>
+                        </div>
+                        <div class="channel-item" data-channel="rules">
+                            <i class="fa-solid fa-gavel channel-icon"></i>
+                            <span class="channel-name">rules-and-info</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category: Community Chat -->
+                <div class="channel-category">
+                    <div class="category-title">
+                        <i class="fa-solid fa-chevron-down category-arrow"></i>
+                        <span>Community Rooms</span>
+                    </div>
+                    <div class="category-channels">
+                        <div class="channel-item" data-channel="general">
+                            <i class="fa-solid fa-hashtag channel-icon"></i>
+                            <span class="channel-name">general-chat</span>
+                        </div>
+                        <div class="channel-item" data-channel="media">
+                            <i class="fa-solid fa-camera channel-icon"></i>
+                            <span class="channel-name">media-share</span>
+                        </div>
+                        <div class="channel-item" data-channel="suggestions">
+                            <i class="fa-solid fa-lightbulb channel-icon"></i>
+                            <span class="channel-name">suggestions</span>
+                        </div>
+                        <div class="channel-item" data-channel="world">
+                            <i class="fa-solid fa-globe channel-icon"></i>
+                            <span class="channel-name">world-chat</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar User Profile Footer -->
+            <div class="user-profile-footer">
+                <div class="user-avatar-wrapper">
+                    <div class="user-avatar"></div>
+                    <div class="status-indicator online"></div>
+                </div>
+                <div class="user-info">
+                    <span class="username">Guest_User</span>
+                    <span class="user-tag">#0001</span>
+                </div>
+                <div class="user-actions">
+                    <button title="Mute"><i class="fa-solid fa-microphone"></i></button>
+                    <button title="Deafen"><i class="fa-solid fa-headphones"></i></button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Side: Main Dynamic Chat Area -->
+        <main class="main-content">
+            <!-- Top Panel Header -->
+            <header class="chat-header">
+                <div class="header-left">
+                    <i class="fa-solid fa-bullhorn channel-header-icon" id="currentChannelIcon"></i>
+                    <h1 id="currentChannelTitle">announcements</h1>
+                    <span class="header-separator">|</span>
+                    <p id="currentChannelDesc" class="channel-description">Official news and updates regarding Studio Lite.</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search community..." aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    </div>
+                    <button class="header-action-icon" title="Notifications"><i class="fa-solid fa-bell"></i></button>
+                    <button class="header-action-icon" title="Pinned Messages"><i class="fa-solid fa-thumbtack"></i></button>
+                </div>
+            </header>
+
+            <!-- Scrollable View Container for Message Panels -->
+            <div class="chat-viewport" id="chatViewport">
+                <!-- Messages will load dynamically based on active channels via JS -->
+            </div>
+
+            <!-- Standardized Chat Input Field Area -->
+            <footer class="chat-input-area">
+                <div class="input-wrapper">
+                    <button class="input-action-btn" title="Upload File"><i class="fa-solid fa-circle-plus"></i></button>
+                    <form id="messageForm" autocomplete="off">
+                        <input type="text" id="messageInputField" placeholder="Message #announcements">
+                    </form>
+                    <div class="input-emoji-picker">
+                        <button class="input-action-btn" title="Insert Emoji"><i class="fa-solid fa-face-smile"></i></button>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Modals Layout Structure -->
+    <!-- Create Server Modal -->
+    <div class="modal-backdrop" id="createServerModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeCreateModal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <h2>Customize Your Community Server</h2>
+                <p>Give your new server a distinct personality with a name and avatar. You can always refine this later.</p>
+            </div>
+            <div class="modal-body">
+                <div class="avatar-upload-placeholder">
+                    <i class="fa-solid fa-camera-retro"></i>
+                    <span>UPLOAD</span>
+                </div>
+                <div class="form-group">
+                    <label for="serverNameInput">SERVER NAME</label>
+                    <input type="text" id="serverNameInput" value="Guest's Studio Ecosystem">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-text" id="cancelCreateModal">Back</button>
+                <button class="btn-primary" id="submitCreateModal">Create Server</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
