@@ -7,382 +7,343 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <path d="M4 6h16M4 12h16M4 18h16" />
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="7" />
+      <path d="M20 20l-3.5-3.5" />
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14" />
+    </symbol>
+    <symbol id="icon-send" viewBox="0 0 24 24">
+      <path d="M22 2L11 13" />
+      <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+    </symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24">
+      <path d="M15 17H5l1.5-2V11a6.5 6.5 0 0 1 13 0v4l1.5 2H17" />
+      <path d="M10 19a2 2 0 0 0 4 0" />
+    </symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24">
+      <path d="M16 19v-1a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v1" />
+      <circle cx="9" cy="8" r="3" />
+      <path d="M22 19v-1a4 4 0 0 0-3-3.87" />
+      <path d="M16 5.13a3 3 0 0 1 0 5.74" />
+    </symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.4 15a7.8 7.8 0 0 0 .1-1 7.8 7.8 0 0 0-.1-1l2-1.5-2-3.5-2.4.7a8.1 8.1 0 0 0-1.7-1l-.4-2.5h-4l-.4 2.5a8.1 8.1 0 0 0-1.7 1L5.6 7 3.6 10.5 5.6 12a7.8 7.8 0 0 0-.1 1 7.8 7.8 0 0 0 .1 1l-2 1.5 2 3.5 2.4-.7c.5.4 1.1.8 1.7 1l.4 2.5h4l.4-2.5c.6-.3 1.2-.6 1.7-1l2.4.7 2-3.5z" />
+    </symbol>
+    <symbol id="icon-message" viewBox="0 0 24 24">
+      <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
+    </symbol>
+    <symbol id="icon-image" viewBox="0 0 24 24">
+      <rect x="3" y="4" width="18" height="16" rx="3" />
+      <path d="M8 11l2.5 2.5L15 9l6 7" />
+      <circle cx="8" cy="9" r="1.5" />
+    </symbol>
+    <symbol id="icon-lightbulb" viewBox="0 0 24 24">
+      <path d="M9 18h6" />
+      <path d="M10 22h4" />
+      <path d="M8 14a7 7 0 1 1 8 0c-.7.5-1 1.2-1 2H9c0-.8-.3-1.5-1-2z" />
+    </symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18" />
+      <path d="M12 3a15 15 0 0 1 0 18" />
+      <path d="M12 3a15 15 0 0 0 0 18" />
+    </symbol>
+    <symbol id="icon-megaphone" viewBox="0 0 24 24">
+      <path d="M3 11v2a2 2 0 0 0 2 2h2l7 5V4L7 9H5a2 2 0 0 0-2 2z" />
+      <path d="M17 8a4 4 0 0 1 0 8" />
+      <path d="M19 6a7 7 0 0 1 0 12" />
+    </symbol>
+    <symbol id="icon-hash" viewBox="0 0 24 24">
+      <path d="M4 9h16M3 15h16M9 3L7 21M17 3l-2 18" />
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="M18 6L6 18M6 6l12 12" />
+    </symbol>
+    <symbol id="icon-join" viewBox="0 0 24 24">
+      <path d="M12 5v14" />
+      <path d="M5 12h14" />
+      <path d="M16 7l5 5-5 5" />
+    </symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24">
+      <path d="M10 17l1 1a2 2 0 0 0 3-1.7V7.7A2 2 0 0 0 11 6l-1 1" />
+      <path d="M14 12H3" />
+      <path d="M7 8l-4 4 4 4" />
+    </symbol>
+    <symbol id="icon-rocket" viewBox="0 0 24 24">
+      <path d="M5 15c0-7 6-11 14-12-1 8-5 14-12 14l-2 2-2-2 2-2z" />
+      <path d="M14 10a2 2 0 1 0 0.01 0" />
+    </symbol>
+  </svg>
+
   <div class="app-shell">
-    <!-- Left Server Bar -->
-    <aside class="server-bar" id="serverBar">
-      <div class="brand-badge" title="Studio Lite Community">S</div>
-
-      <button class="server-icon active" type="button" data-server="Studio Lite Community" aria-label="Studio Lite Community">
-        S
+    <aside class="server-rail" aria-label="Servers">
+      <button class="server-pill active" title="Studio Lite Community">
+        <span>SL</span>
       </button>
-      <button class="server-icon" type="button" data-server="Build Hub" aria-label="Build Hub">
-        B
+      <button class="server-pill" title="Design Lab">
+        <span>DL</span>
       </button>
-      <button class="server-icon" type="button" data-server="Creators Guild" aria-label="Creators Guild">
-        C
-      </button>
-      <button class="server-icon" type="button" data-server="World Chat" aria-label="World Chat">
-        W
+      <button class="server-pill" title="Creator Hub">
+        <span>CH</span>
       </button>
 
-      <div class="server-bar-spacer"></div>
+      <div class="rail-spacer"></div>
 
-      <button class="server-icon action" type="button" id="openCreateServerBtn" aria-label="Create server">
-        +
+      <button class="server-pill action" id="openCreateServerRail" title="Create Server">
+        <svg><use href="#icon-plus"></use></svg>
+      </button>
+      <button class="server-pill action" id="openJoinServerRail" title="Join Server">
+        <svg><use href="#icon-join"></use></svg>
       </button>
     </aside>
 
-    <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-top">
-        <div class="server-info">
-          <div class="server-avatar">SL</div>
+        <div class="brand">
+          <div class="brand-mark">◎</div>
           <div>
-            <h1 id="serverName">Studio Lite Community</h1>
-            <p>Mobile-friendly community hub</p>
+            <h1>Studio Lite Community</h1>
+            <p><span class="status-dot"></span> Live now • 1.2k members</p>
           </div>
         </div>
 
-        <div class="sidebar-actions">
-          <button class="ghost-btn" type="button" id="joinServerBtn">Join Server</button>
-          <button class="ghost-btn primary" type="button" id="createServerBtn">Create Server</button>
-        </div>
-      </div>
-
-      <div class="channel-section">
-        <div class="section-label">Community Channels</div>
-
-        <button class="channel-btn active" type="button" data-channel="announcements">
-          <span>#</span> Announcements
-        </button>
-        <button class="channel-btn" type="button" data-channel="general">
-          <span>#</span> General Chat
-        </button>
-        <button class="channel-btn" type="button" data-channel="media">
-          <span>#</span> Media
-        </button>
-        <button class="channel-btn" type="button" data-channel="suggestions">
-          <span>#</span> Suggestions
-        </button>
-        <button class="channel-btn" type="button" data-channel="world">
-          <span>#</span> World Chat
+        <button class="icon-btn mobile-only" id="closeSidebarBtn" aria-label="Close sidebar">
+          <svg><use href="#icon-close"></use></svg>
         </button>
       </div>
 
-      <div class="channel-section">
-        <div class="section-label">Categories</div>
-
-        <div class="category-group">
-          <span class="category-title">Information</span>
-          <button class="mini-link active" type="button" data-panel="announcements">Announcements</button>
-          <button class="mini-link" type="button" data-panel="suggestions">Suggestions</button>
-        </div>
-
-        <div class="category-group">
-          <span class="category-title">Social</span>
-          <button class="mini-link" type="button" data-panel="general">General Chat</button>
-          <button class="mini-link" type="button" data-panel="world">World Chat</button>
-        </div>
-
-        <div class="category-group">
-          <span class="category-title">Media</span>
-          <button class="mini-link" type="button" data-panel="media">Media</button>
-        </div>
+      <div class="sidebar-actions">
+        <button class="primary-btn" id="createServerBtn">
+          <svg><use href="#icon-plus"></use></svg>
+          Create Server
+        </button>
+        <button class="secondary-btn" id="joinServerBtn">
+          <svg><use href="#icon-join"></use></svg>
+          Join Server
+        </button>
       </div>
 
-      <div class="sidebar-footer">
-        <div class="status-card">
-          <div class="status-dot"></div>
-          <div>
-            <strong>Community Online</strong>
-            <p>1,284 members active</p>
+      <div class="search-box">
+        <svg><use href="#icon-search"></use></svg>
+        <input id="globalSearch" type="text" placeholder="Search channels or messages" />
+      </div>
+
+      <div class="sidebar-scroll">
+        <div class="channel-group">
+          <div class="group-title">
+            <span>Information</span>
+            <svg><use href="#icon-bell"></use></svg>
           </div>
+
+          <button class="channel-item active" data-channel="announcements">
+            <span class="channel-left">
+              <svg><use href="#icon-megaphone"></use></svg>
+              <span># announcements</span>
+            </span>
+            <span class="unread-badge">3</span>
+          </button>
+
+          <button class="channel-item" data-channel="rules">
+            <span class="channel-left">
+              <svg><use href="#icon-settings"></use></svg>
+              <span># rules</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="channel-group">
+          <div class="group-title">
+            <span>Community</span>
+            <svg><use href="#icon-users"></use></svg>
+          </div>
+
+          <button class="channel-item" data-channel="general">
+            <span class="channel-left">
+              <svg><use href="#icon-hash"></use></svg>
+              <span># general-chat</span>
+            </span>
+          </button>
+
+          <button class="channel-item" data-channel="world">
+            <span class="channel-left">
+              <svg><use href="#icon-globe"></use></svg>
+              <span># world-chat</span>
+            </span>
+            <span class="unread-badge dot"></span>
+          </button>
+        </div>
+
+        <div class="channel-group">
+          <div class="group-title">
+            <span>Creative</span>
+            <svg><use href="#icon-lightbulb"></use></svg>
+          </div>
+
+          <button class="channel-item" data-channel="suggestions">
+            <span class="channel-left">
+              <svg><use href="#icon-lightbulb"></use></svg>
+              <span># suggestions</span>
+            </span>
+            <span class="unread-badge">1</span>
+          </button>
+
+          <button class="channel-item" data-channel="media">
+            <span class="channel-left">
+              <svg><use href="#icon-image"></use></svg>
+              <span># media</span>
+            </span>
+          </button>
         </div>
       </div>
     </aside>
 
-    <!-- Main Area -->
-    <main class="main-area">
+    <main class="main-panel">
       <header class="topbar">
-        <button class="icon-btn mobile-only" type="button" id="menuToggle" aria-label="Toggle sidebar">☰</button>
+        <div class="topbar-left">
+          <button class="icon-btn mobile-only" id="openSidebarBtn" aria-label="Open sidebar">
+            <svg><use href="#icon-menu"></use></svg>
+          </button>
 
-        <div class="topbar-title">
-          <h2 id="activeChannelTitle"># announcements</h2>
-          <p id="activeChannelSubtitle">Latest updates, featured posts, and community highlights</p>
+          <div class="channel-meta">
+            <div class="channel-title-row">
+              <svg class="channel-symbol"><use href="#icon-hash"></use></svg>
+              <h2 id="channelTitle">announcements</h2>
+              <span class="live-pill">Community online</span>
+            </div>
+            <p id="channelSubtitle">Official updates, news, and event posts.</p>
+          </div>
         </div>
 
         <div class="topbar-actions">
-          <div class="search-wrap">
-            <input id="searchInput" type="search" placeholder="Search community..." autocomplete="off" />
-          </div>
-          <button class="pill-btn" type="button" id="joinServerTopBtn">Join</button>
-          <button class="pill-btn primary" type="button" id="createServerTopBtn">Create</button>
+          <button class="header-btn" id="inviteBtn">
+            <svg><use href="#icon-rocket"></use></svg>
+            Invite
+          </button>
+          <button class="header-btn">
+            <svg><use href="#icon-users"></use></svg>
+            Members
+          </button>
+          <button class="header-btn">
+            <svg><use href="#icon-bell"></use></svg>
+            Alerts
+          </button>
         </div>
       </header>
 
-      <section class="content-grid">
-        <div class="main-panel">
-          <div class="panel-tabs">
-            <button class="tab-btn active" type="button" data-tab="announcements">Announcements</button>
-            <button class="tab-btn" type="button" data-tab="general">General</button>
-            <button class="tab-btn" type="button" data-tab="media">Media</button>
-            <button class="tab-btn" type="button" data-tab="suggestions">Suggestions</button>
-            <button class="tab-btn" type="button" data-tab="world">World</button>
+      <section class="overview-grid">
+        <article class="info-card">
+          <div class="card-icon">
+            <svg><use href="#icon-megaphone"></use></svg>
           </div>
-
-          <!-- Announcements -->
-          <div class="panel-content active" id="panel-announcements" data-panel="announcements">
-            <div class="hero-card">
-              <div>
-                <span class="eyebrow">Community Update</span>
-                <h3>Welcome to Studio Lite Community</h3>
-                <p>
-                  A clean, mobile-first community space for builders, creators, and players.
-                  Share updates, post media, and connect with everyone in one place.
-                </p>
-              </div>
-              <div class="hero-stats">
-                <div>
-                  <strong>24</strong>
-                  <span>Posts Today</span>
-                </div>
-                <div>
-                  <strong>1.2K</strong>
-                  <span>Members</span>
-                </div>
-                <div>
-                  <strong>98%</strong>
-                  <span>Positive Vibes</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card-list">
-              <article class="feed-card" data-searchable="server update community event">
-                <div class="feed-top">
-                  <div class="avatar">A</div>
-                  <div>
-                    <h4>Admin Team</h4>
-                    <p>Posted 2 hours ago</p>
-                  </div>
-                  <span class="tag">Important</span>
-                </div>
-                <p>
-                  We have launched the new community layout. Use the sidebar to switch channels,
-                  join the server, and explore featured discussions.
-                </p>
-              </article>
-
-              <article class="feed-card" data-searchable="event build challenge contest">
-                <div class="feed-top">
-                  <div class="avatar alt">E</div>
-                  <div>
-                    <h4>Event Crew</h4>
-                    <p>Posted today</p>
-                  </div>
-                  <span class="tag secondary">Event</span>
-                </div>
-                <p>
-                  Weekend Build Challenge is live. Share your best creations in the Media channel
-                  and tag your submissions for a chance to be featured.
-                </p>
-              </article>
-            </div>
+          <div>
+            <h3>Announcements</h3>
+            <p>Clear updates, event posts, and server notices.</p>
           </div>
+        </article>
 
-          <!-- General -->
-          <div class="panel-content" id="panel-general" data-panel="general">
-            <div class="chat-stream">
-              <article class="message-card" data-searchable="hello everyone welcome general chat">
-                <div class="msg-avatar">M</div>
-                <div class="msg-body">
-                  <div class="msg-head">
-                    <strong>MoonByte</strong>
-                    <span>10:12 AM</span>
-                  </div>
-                  <p>Hello everyone! Welcome to the general chat area.</p>
-                </div>
-              </article>
-
-              <article class="message-card" data-searchable="anyone building game ui mobile">
-                <div class="msg-avatar alt">R</div>
-                <div class="msg-body">
-                  <div class="msg-head">
-                    <strong>Rin</strong>
-                    <span>10:17 AM</span>
-                  </div>
-                  <p>Anyone building a mobile UI for their game right now?</p>
-                </div>
-              </article>
-
-              <article class="message-card" data-searchable="working on responsive dark theme">
-                <div class="msg-avatar third">S</div>
-                <div class="msg-body">
-                  <div class="msg-head">
-                    <strong>StudioDev</strong>
-                    <span>10:22 AM</span>
-                  </div>
-                  <p>Working on a responsive dark theme with clean cards and smooth interactions.</p>
-                </div>
-              </article>
-            </div>
+        <article class="info-card">
+          <div class="card-icon">
+            <svg><use href="#icon-users"></use></svg>
           </div>
-
-          <!-- Media -->
-          <div class="panel-content" id="panel-media" data-panel="media">
-            <div class="media-grid">
-              <article class="media-card" data-searchable="screenshot ui mockup">
-                <div class="media-preview">
-                  <div class="preview-shape"></div>
-                </div>
-                <h4>UI Mockup</h4>
-                <p>Fresh design exploration for the community dashboard.</p>
-              </article>
-
-              <article class="media-card" data-searchable="banner artwork game design">
-                <div class="media-preview alt">
-                  <div class="preview-shape second"></div>
-                </div>
-                <h4>Banner Artwork</h4>
-                <p>Original banner space for your server highlights and promos.</p>
-              </article>
-
-              <article class="media-card" data-searchable="mobile layout concept">
-                <div class="media-preview third">
-                  <div class="preview-shape third"></div>
-                </div>
-                <h4>Mobile Layout</h4>
-                <p>Compact layout optimized for small screens and quick navigation.</p>
-              </article>
-            </div>
+          <div>
+            <h3>Active Members</h3>
+            <p>Live discussions across general, media, and world chat.</p>
           </div>
+        </article>
 
-          <!-- Suggestions -->
-          <div class="panel-content" id="panel-suggestions" data-panel="suggestions">
-            <div class="card-list">
-              <article class="suggestion-card" data-searchable="feature request polls pinned messages">
-                <h4>Feature Request: Polls</h4>
-                <p>Add quick polls for voting on community events and updates.</p>
-                <button class="small-btn" type="button">Upvote</button>
-              </article>
-
-              <article class="suggestion-card" data-searchable="feature request pinned posts">
-                <h4>Feature Request: Pinned Highlights</h4>
-                <p>Keep important posts visible at the top of each channel.</p>
-                <button class="small-btn" type="button">Upvote</button>
-              </article>
-            </div>
+        <article class="info-card">
+          <div class="card-icon">
+            <svg><use href="#icon-lightbulb"></use></svg>
           </div>
-
-          <!-- World -->
-          <div class="panel-content" id="panel-world" data-panel="world">
-            <div class="world-banner">
-              <div>
-                <span class="eyebrow">Global Chat</span>
-                <h3>World Chat Open</h3>
-                <p>Share what you are building, exploring, or learning across the community.</p>
-              </div>
-              <button class="pill-btn primary" type="button">Start Conversation</button>
-            </div>
-
-            <div class="chat-stream">
-              <article class="message-card" data-searchable="world chat greetings from different places">
-                <div class="msg-avatar">W</div>
-                <div class="msg-body">
-                  <div class="msg-head">
-                    <strong>WorldLink</strong>
-                    <span>11:03 AM</span>
-                  </div>
-                  <p>Greetings from different places around the world!</p>
-                </div>
-              </article>
-
-              <article class="message-card" data-searchable="sharing projects and ideas here">
-                <div class="msg-avatar alt">N</div>
-                <div class="msg-body">
-                  <div class="msg-head">
-                    <strong>Nova</strong>
-                    <span>11:15 AM</span>
-                  </div>
-                  <p>Love how this layout makes it easy to share projects and ideas.</p>
-                </div>
-              </article>
-            </div>
+          <div>
+            <h3>Suggestions</h3>
+            <p>Share ideas and vote on the next community features.</p>
           </div>
+        </article>
+      </section>
+
+      <section class="chat-shell">
+        <div class="loading-layer" id="loadingLayer" aria-hidden="true">
+          <div class="spinner"></div>
+          <p>Loading channel…</p>
         </div>
 
-        <aside class="info-panel">
-          <div class="info-card">
-            <span class="eyebrow">Server Actions</span>
-            <h3>Quick Access</h3>
-            <p>Use the buttons below to create or join your community in a single tap.</p>
+        <div class="messages" id="messageList" aria-live="polite"></div>
 
-            <div class="action-stack">
-              <button class="wide-btn primary" type="button" id="quickCreateBtn">Create Server</button>
-              <button class="wide-btn" type="button" id="quickJoinBtn">Join Server</button>
-            </div>
+        <div class="composer">
+          <button class="composer-icon" id="attachBtn" title="Attach">
+            <svg><use href="#icon-plus"></use></svg>
+          </button>
+
+          <div class="composer-input-wrap">
+            <input id="messageInput" type="text" placeholder="Message #announcements" autocomplete="off" />
           </div>
 
-          <div class="info-card">
-            <span class="eyebrow">Channel Guide</span>
-            <h3>Popular Sections</h3>
-            <div class="mini-stat">
-              <span>Announcements</span>
-              <strong>Updates & events</strong>
-            </div>
-            <div class="mini-stat">
-              <span>General Chat</span>
-              <strong>Daily conversation</strong>
-            </div>
-            <div class="mini-stat">
-              <span>Media</span>
-              <strong>Images & previews</strong>
-            </div>
-            <div class="mini-stat">
-              <span>Suggestions</span>
-              <strong>Feature ideas</strong>
-            </div>
-          </div>
+          <button class="composer-icon" id="emojiBtn" title="Quick action">
+            <svg><use href="#icon-bell"></use></svg>
+          </button>
 
-          <div class="info-card compact">
-            <span class="eyebrow">Members Online</span>
-            <div class="member-list">
-              <div class="member-chip"><span class="dot"></span> StudioDev</div>
-              <div class="member-chip"><span class="dot"></span> MoonByte</div>
-              <div class="member-chip"><span class="dot"></span> Rin</div>
-              <div class="member-chip"><span class="dot"></span> Nova</div>
-            </div>
-          </div>
-        </aside>
+          <button class="send-btn" id="sendBtn">
+            <svg><use href="#icon-send"></use></svg>
+            Send
+          </button>
+        </div>
       </section>
     </main>
   </div>
 
-  <!-- Modal -->
-  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
-    <div class="modal">
-      <button class="modal-close" type="button" id="closeModalBtn" aria-label="Close modal">×</button>
-      <span class="eyebrow" id="modalEyebrow">Create a Server</span>
-      <h3 id="modalTitle">Build your community</h3>
-      <p id="modalText">
-        Create a new community space for your members, channels, and announcements.
-      </p>
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <div>
+          <p class="modal-kicker" id="modalKicker">Studio Lite</p>
+          <h3 id="modalTitle">Create Server</h3>
+        </div>
+        <button class="icon-btn" id="closeModalBtn" aria-label="Close modal">
+          <svg><use href="#icon-close"></use></svg>
+        </button>
+      </div>
 
-      <form class="modal-form" id="modalForm">
-        <label>
-          Server Name
-          <input type="text" id="serverInput" placeholder="Enter server name" />
-        </label>
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-mode="create">Create</button>
+        <button class="modal-tab" data-mode="join">Join</button>
+      </div>
 
-        <label>
-          Description
-          <textarea id="descriptionInput" rows="4" placeholder="Write a short description"></textarea>
-        </label>
+      <div class="modal-body">
+        <div class="field" id="createFields">
+          <label for="serverName">Server name</label>
+          <input id="serverName" type="text" placeholder="Studio Lite HQ" />
+        </div>
 
-        <button class="wide-btn primary" type="submit" id="modalActionBtn">Create Now</button>
-      </form>
+        <div class="field" id="joinFields" hidden>
+          <label for="serverCode">Server invite code</label>
+          <input id="serverCode" type="text" placeholder="SLC-2048" />
+        </div>
+
+        <div class="field">
+          <label for="serverNote">Optional note</label>
+          <textarea id="serverNote" rows="4" placeholder="Add a short description for your community."></textarea>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="ghost-btn" id="cancelModalBtn">Cancel</button>
+        <button class="primary-btn" id="confirmModalBtn">
+          <svg><use href="#icon-plus"></use></svg>
+          Create Server
+        </button>
+      </div>
     </div>
   </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
 
   <script src="script.js"></script>
 </body>
