@@ -22,7 +22,7 @@
   --radius-md: 16px;
   --radius-sm: 12px;
   --rail-w: 84px;
-  --sidebar-w: 320px;
+  --sidebar-w: 340px;
   --topbar-h: 84px;
   --ease: cubic-bezier(.2,.8,.2,1);
 }
@@ -40,7 +40,7 @@ body{
   overflow:hidden;
 }
 
-button, input, textarea{
+button, input, textarea, select{
   font:inherit;
 }
 
@@ -79,6 +79,9 @@ svg{
   place-items:center;
   padding:20px;
   z-index:50;
+  background:
+    radial-gradient(800px 360px at 50% 0%, rgba(124,156,255,.12), transparent 60%),
+    linear-gradient(180deg, rgba(8,10,15,.78), rgba(8,10,15,.88));
 }
 
 .auth-card{
@@ -164,7 +167,8 @@ svg{
 }
 
 .field input,
-.field textarea{
+.field textarea,
+.field select{
   width:100%;
   border:1px solid var(--border);
   border-radius:16px;
@@ -178,6 +182,7 @@ svg{
 
 .field input:focus,
 .field textarea:focus,
+.field select:focus,
 .search-box:focus-within,
 .composer-input-wrap:focus-within{
   border-color: rgba(124,156,255,.35);
@@ -336,6 +341,48 @@ svg{
   min-width:0;
 }
 
+.brand-server{
+  width:100%;
+}
+
+.server-avatar{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  overflow:hidden;
+  flex:0 0 auto;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-weight:900;
+  background: linear-gradient(180deg, rgba(124,156,255,.92), rgba(141,125,255,.86));
+  box-shadow: 0 10px 18px rgba(124,156,255,.12);
+}
+
+.server-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.server-avatar-lg{
+  width:72px;
+  height:72px;
+  border-radius:22px;
+}
+
+.brand-text{
+  min-width:0;
+}
+
+.brand-line{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+}
+
 .brand h1{
   margin:0;
   font-size:1.02rem;
@@ -349,9 +396,7 @@ svg{
   margin:4px 0 0;
   color:var(--muted);
   font-size:.84rem;
-  display:flex;
-  align-items:center;
-  gap:8px;
+  line-height:1.45;
 }
 
 .status-dot{
@@ -470,6 +515,16 @@ svg{
   opacity:.95;
 }
 
+.channel-emoji{
+  width:24px;
+  height:24px;
+  border-radius:9px;
+  display:grid;
+  place-items:center;
+  background: rgba(255,255,255,.04);
+  font-size:.95rem;
+}
+
 .unread-badge{
   min-width:22px;
   height:22px;
@@ -559,6 +614,12 @@ svg{
   height:13px;
 }
 
+.verified-blue{
+  width:22px;
+  height:22px;
+  border-radius:999px;
+}
+
 .main-panel{
   min-width:0;
   display:grid;
@@ -606,9 +667,15 @@ svg{
 }
 
 .channel-symbol{
-  width:18px;
-  height:18px;
-  color:#aeb8d8;
+  width:28px;
+  height:28px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  color:#d8e2ff;
+  background: rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  font-weight:900;
 }
 
 .live-pill{
@@ -769,6 +836,7 @@ svg{
 .role-pill.owner{background:rgba(93,182,255,.14);color:#8fcbff;border-color:rgba(93,182,255,.18)}
 .role-pill.admin{background:rgba(124,156,255,.12);color:#d9e3ff;border-color:rgba(124,156,255,.16)}
 .role-pill.moderator{background:rgba(61,220,151,.12);color:#a9f2d3;border-color:rgba(61,220,151,.16)}
+.role-pill.content_creator{background:rgba(255,209,102,.12);color:#ffe199;border-color:rgba(255,209,102,.16)}
 .role-pill.member{background:rgba(255,255,255,.05);color:#d7deef;border-color:rgba(255,255,255,.08)}
 
 .message-text{
@@ -961,6 +1029,8 @@ svg{
   padding:20px;
   transform: translateY(10px) scale(.98);
   animation: pop .22s var(--ease) forwards;
+  max-height: calc(100vh - 24px);
+  overflow:auto;
 }
 
 .modal-wide{
@@ -1047,7 +1117,7 @@ svg{
 
 .admin-grid{
   display:grid;
-  grid-template-columns: minmax(0,1.3fr) minmax(0,.9fr);
+  grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr);
   gap:14px;
 }
 
@@ -1206,6 +1276,10 @@ svg{
   line-height:1.45;
 }
 
+.server-preview-card{
+  align-items:center;
+}
+
 .toast-stack{
   position:fixed;
   right:18px;
@@ -1269,6 +1343,9 @@ body.logged-in .auth-screen{
 
 @media (max-width: 1120px){
   .overview-grid{
+    grid-template-columns: 1fr;
+  }
+  .admin-grid{
     grid-template-columns: 1fr;
   }
 }
@@ -1337,12 +1414,7 @@ body.logged-in .auth-screen{
     padding-top:10px;
   }
 
-  .modal-panel{
-    max-height: calc(100vh - 24px);
-    overflow:auto;
-  }
-
-  .admin-grid{
+  .member-actions{
     grid-template-columns: 1fr;
   }
 }
@@ -1429,9 +1501,5 @@ body.logged-in .auth-screen{
   .modal-actions .ghost-btn,
   .modal-actions .secondary-btn{
     flex:1;
-  }
-
-  .member-actions{
-    grid-template-columns: 1fr;
   }
 }
