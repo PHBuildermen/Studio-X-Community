@@ -1,185 +1,210 @@
-// Mock Database Context Store for Dynamic Channel Population
-const channelMockData = {
+const sidebar = document.getElementById("sidebar");
+const menuToggle = document.getElementById("menuToggle");
+const serverName = document.getElementById("serverName");
+const activeChannelTitle = document.getElementById("activeChannelTitle");
+const activeChannelSubtitle = document.getElementById("activeChannelSubtitle");
+const searchInput = document.getElementById("searchInput");
+
+const modalBackdrop = document.getElementById("modalBackdrop");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const modalForm = document.getElementById("modalForm");
+const modalEyebrow = document.getElementById("modalEyebrow");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+const modalActionBtn = document.getElementById("modalActionBtn");
+const serverInput = document.getElementById("serverInput");
+const descriptionInput = document.getElementById("descriptionInput");
+
+const createServerBtn = document.getElementById("createServerBtn");
+const createServerTopBtn = document.getElementById("createServerTopBtn");
+const quickCreateBtn = document.getElementById("quickCreateBtn");
+const openCreateServerBtn = document.getElementById("openCreateServerBtn");
+
+const joinServerBtn = document.getElementById("joinServerBtn");
+const joinServerTopBtn = document.getElementById("joinServerTopBtn");
+const quickJoinBtn = document.getElementById("quickJoinBtn");
+
+const tabButtons = document.querySelectorAll(".tab-btn");
+const panelContents = document.querySelectorAll(".panel-content");
+const channelButtons = document.querySelectorAll(".channel-btn");
+const miniLinks = document.querySelectorAll(".mini-link");
+const serverIcons = document.querySelectorAll(".server-icon");
+
+const searchableItems = document.querySelectorAll("[data-searchable]");
+const toast = document.createElement("div");
+toast.className = "toast";
+document.body.appendChild(toast);
+
+let modalMode = "create";
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => toast.classList.remove("show"), 2200);
+}
+
+function openModal(mode = "create") {
+  modalMode = mode;
+
+  if (mode === "create") {
+    modalEyebrow.textContent = "Create a Server";
+    modalTitle.textContent = "Build your community";
+    modalText.textContent = "Create a new community space for your members, channels, and announcements.";
+    modalActionBtn.textContent = "Create Now";
+    serverInput.placeholder = "Enter server name";
+    descriptionInput.placeholder = "Write a short description";
+  } else {
+    modalEyebrow.textContent = "Join a Server";
+    modalTitle.textContent = "Enter an invite code";
+    modalText.textContent = "Join an existing community with a server code or invite link.";
+    modalActionBtn.textContent = "Join Now";
+    serverInput.placeholder = "Enter invite code";
+    descriptionInput.placeholder = "Optional note";
+  }
+
+  modalBackdrop.classList.add("show");
+  modalBackdrop.setAttribute("aria-hidden", "false");
+  setTimeout(() => serverInput.focus(), 50);
+}
+
+function closeModal() {
+  modalBackdrop.classList.remove("show");
+  modalBackdrop.setAttribute("aria-hidden", "true");
+}
+
+function setActiveTab(tabName) {
+  tabButtons.forEach((btn) => btn.classList.toggle("active", btn.dataset.tab === tabName));
+  panelContents.forEach((panel) => panel.classList.toggle("active", panel.dataset.panel === tabName));
+  channelButtons.forEach((btn) => btn.classList.toggle("active", btn.dataset.channel === tabName));
+  miniLinks.forEach((link) => link.classList.toggle("active", link.dataset.panel === tabName));
+
+  const labels = {
     announcements: {
-        title: "announcements",
-        icon: "fa-bullhorn",
-        desc: "Official news and updates regarding Studio Lite.",
-        messages: [
-            { author: "System_Admin", avatarColor: "#6366f1", text: "Welcome to the launch of **Studio Lite Community** platform! This design uses pure vanilla technology architectures.", isCard: false },
-            { author: "Design_Lead", avatarColor: "#ec4899", text: "Check out our newest framework roadmap down below.", isCard: true, cardTitle: "Production Release Status", cardBody: "Version 1.0 architecture is complete. Fully responsive layouts optimized for mobile displays are now active globally." }
-        ]
-    },
-    rules: {
-        title: "rules-and-info",
-        icon: "fa-gavel",
-        desc: "The code of conduct for our collaborative environment.",
-        messages: [
-            { author: "System_Admin", avatarColor: "#6366f1", text: "1. Be respectful to all members.\n2. No spam or unauthorized promotional materials.\n3. Keep topics matching room parameters.", isCard: false }
-        ]
+      title: "# announcements",
+      subtitle: "Latest updates, featured posts, and community highlights",
     },
     general: {
-        title: "general-chat",
-        icon: "fa-hashtag",
-        desc: "Casual conversation sandbox for verified profiles.",
-        messages: [
-            { author: "User_Alpha", avatarColor: "#14b8a6", text: "Hey folks! Is anyone currently working on CSS grid deployments?", isCard: false },
-            { author: "Dev_Beta", avatarColor: "#f59e0b", text: "Yeah! It pairs incredibly well with vanilla variables layout properties.", isCard: false }
-        ]
+      title: "# general chat",
+      subtitle: "Talk with members in the main community space",
     },
     media: {
-        title: "media-share",
-        icon: "fa-camera",
-        desc: "Post design inspiration snapshots here.",
-        messages: [
-            { author: "UI_Explorer", avatarColor: "#a855f7", text: "Just posted a clean UI palette on my personal production dashboard profile.", isCard: false }
-        ]
+      title: "# media",
+      subtitle: "Share screenshots, artwork, and creative previews",
     },
     suggestions: {
-        title: "suggestions",
-        icon: "fa-lightbulb",
-        desc: "Leave platform feature iterations here.",
-        messages: [
-            { author: "User_Alpha", avatarColor: "#14b8a6", text: "Suggestion: Add an integrated dark-mode code block presentation engine.", isCard: false }
-        ]
+      title: "# suggestions",
+      subtitle: "Vote on ideas and help improve the community",
     },
     world: {
-        title: "world-chat",
-        icon: "fa-globe",
-        desc: "Global space connecting developers from around the cosmos.",
-        messages: [
-            { author: "Global_Node", avatarColor: "#ef4444", text: "Hello from Tokyo! Weather is perfect for coding today.", isCard: false }
-        ]
-    }
-};
+      title: "# world chat",
+      subtitle: "Chat with members across the community",
+    },
+  };
 
-// Application State Management
-let currentChannelId = "announcements";
+  const active = labels[tabName] || labels.announcements;
+  activeChannelTitle.textContent = active.title;
+  activeChannelSubtitle.textContent = active.subtitle;
 
-// DOM Node Selectors
-const appContainer = document.querySelector('.app-container');
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
-const channelItems = document.querySelectorAll('.channel-item');
-const chatViewport = document.getElementById('chatViewport');
-const messageForm = document.getElementById('messageForm');
-const messageInputField = document.getElementById('messageInputField');
+  applySearchFilter(searchInput.value.trim().toLowerCase());
+}
 
-// Channel Presentation Elements
-const currentChannelIcon = document.getElementById('currentChannelIcon');
-const currentChannelTitle = document.getElementById('currentChannelTitle');
-const currentChannelDesc = document.getElementById('currentChannelDesc');
+function applySearchFilter(query) {
+  searchableItems.forEach((item) => {
+    const text = item.dataset.searchable || item.textContent || "";
+    const match = text.toLowerCase().includes(query);
+    item.classList.toggle("hidden", query.length > 0 && !match);
+  });
+}
 
-// Modal Elements
-const createServerModal = document.getElementById('createServerModal');
-const openCreateModalBtn = document.getElementById('openCreateModal');
-const closeCreateModalBtn = document.getElementById('closeCreateModal');
-const cancelCreateModalBtn = document.getElementById('cancelCreateModal');
-const submitCreateModalBtn = document.getElementById('submitCreateModal');
-const joinServerBtn = document.getElementById('joinServerBtn');
-const mobileJoinBtn = document.getElementById('mobileJoinBtn');
-
-// App Initialization Logic
-document.addEventListener("DOMContentLoaded", () => {
-    loadChannelData(currentChannelId);
-    setupEventListeners();
+menuToggle.addEventListener("click", () => {
+  sidebar.classList.toggle("open");
 });
 
-// Primary Event Coordination Configuration
-function setupEventListeners() {
-    // Mobile Drawer Interactions Toggle Mechanism
-    mobileMenuBtn.addEventListener('click', () => appContainer.classList.toggle('nav-open'));
-    sidebarOverlay.addEventListener('click', () => appContainer.classList.remove('nav-open'));
+document.addEventListener("click", (event) => {
+  const clickedInsideSidebar = sidebar.contains(event.target) || menuToggle.contains(event.target);
+  const clickedInsideModal = modalBackdrop.contains(event.target) && !event.target.classList.contains("modal-backdrop");
 
-    // Dynamic Navigation Content Processing
-    channelItems.forEach(item => {
-        item.addEventListener('click', () => {
-            channelItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-            
-            currentChannelId = item.getAttribute('data-channel');
-            loadChannelData(currentChannelId);
-            
-            // Auto close drawer menu components on mobile viewports
-            appContainer.classList.remove('nav-open');
-        });
-    });
+  if (!clickedInsideSidebar && window.innerWidth <= 920) {
+    sidebar.classList.remove("open");
+  }
 
-    // Message Forwarding Simulator Handling
-    messageForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const msgText = messageInputField.value.trim();
-        if (!msgText) return;
+  if (event.target === modalBackdrop) {
+    closeModal();
+  }
+});
 
-        // Push element variables block arrays onto local mock context
-        const newMsg = { author: "Guest_User", avatarColor: "#6366f1", text: msgText, isCard: false };
-        channelMockData[currentChannelId].messages.push(newMsg);
-        
-        appendMessageElement(newMsg);
-        messageInputField.value = "";
-        scrollToChatBottom();
-    });
+tabButtons.forEach((button) => {
+  button.addEventListener("click", () => setActiveTab(button.dataset.tab));
+});
 
-    // Modular Window Management Operations Trigger Hooks
-    openCreateModalBtn.addEventListener('click', () => createServerModal.classList.add('open'));
-    closeCreateModalBtn.addEventListener('click', () => createServerModal.classList.remove('open'));
-    cancelCreateModalBtn.addEventListener('click', () => createServerModal.classList.remove('open'));
-    
-    submitCreateModalBtn.addEventListener('click', () => {
-        alert("Success! Your Studio Community Server instance has been generated.");
-        createServerModal.classList.remove('open');
-    });
+channelButtons.forEach((button) => {
+  button.addEventListener("click", () => setActiveTab(button.dataset.channel));
+});
 
-    // Global Interactive Action Handlers
-    const handleJoinAction = () => alert("Initiating connection handshake protocol to server cluster...");
-    joinServerBtn.addEventListener('click', handleJoinAction);
-    mobileJoinBtn.addEventListener('click', handleJoinAction);
-}
+miniLinks.forEach((link) => {
+  link.addEventListener("click", () => setActiveTab(link.dataset.panel));
+});
 
-// UI Thread Renderer Actions Engine
-function loadChannelData(channelId) {
-    const data = channelMockData[channelId];
-    if (!data) return;
+serverIcons.forEach((icon) => {
+  icon.addEventListener("click", () => {
+    serverIcons.forEach((btn) => btn.classList.remove("active"));
+    icon.classList.add("active");
+    serverName.textContent = icon.dataset.server;
+    showToast(`Switched to ${icon.dataset.server}`);
+  });
+});
 
-    // Redraw Context Node Elements Structural Mapping
-    currentChannelIcon.className = `fa-solid ${data.icon} channel-header-icon`;
-    currentChannelTitle.textContent = data.title;
-    currentChannelDesc.textContent = data.desc;
-    messageInputField.placeholder = `Message #${data.title}`;
+searchInput.addEventListener("input", (e) => {
+  applySearchFilter(e.target.value.trim().toLowerCase());
+});
 
-    // Clear feed container elements and map new array data elements
-    chatViewport.innerHTML = "";
-    data.messages.forEach(msg => appendMessageElement(msg));
-    scrollToChatBottom();
-}
+createServerBtn.addEventListener("click", () => openModal("create"));
+createServerTopBtn.addEventListener("click", () => openModal("create"));
+quickCreateBtn.addEventListener("click", () => openModal("create"));
+openCreateServerBtn.addEventListener("click", () => openModal("create"));
 
-function appendMessageElement(msg) {
-    const cardMarkup = msg.isCard ? `
-        <div class="announcement-card">
-            <h3>${msg.cardTitle}</h3>
-            <p>${msg.cardBody}</p>
-        </div>
-    ` : '';
+joinServerBtn.addEventListener("click", () => openModal("join"));
+joinServerTopBtn.addEventListener("click", () => openModal("join"));
+quickJoinBtn.addEventListener("click", () => openModal("join"));
 
-    const messageHtml = `
-        <div class="message-card">
-            <div class="msg-avatar" style="background-color: ${msg.avatarColor}">
-                ${msg.author.charAt(0).toUpperCase()}
-            </div>
-            <div class="msg-content-wrapper">
-                <div class="msg-metadata">
-                    <span class="msg-author">${msg.author}</span>
-                    <span class="msg-timestamp">Today at ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
-                </div>
-                <div class="msg-body">
-                    ${msg.text.replace(/\n/g, '<br>')}
-                    ${cardMarkup}
-                </div>
-            </div>
-        </div>
-    `;
-    chatViewport.insertAdjacentHTML('beforeend', messageHtml);
-}
+closeModalBtn.addEventListener("click", closeModal);
 
-function scrollToChatBottom() {
-    chatViewport.scrollTop = chatViewport.scrollHeight;
-}
+modalForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const nameValue = serverInput.value.trim();
+  const descriptionValue = descriptionInput.value.trim();
+
+  if (!nameValue) {
+    showToast(modalMode === "create" ? "Please enter a server name." : "Please enter an invite code.");
+    serverInput.focus();
+    return;
+  }
+
+  if (modalMode === "create") {
+    showToast(`Server "${nameValue}" created successfully.`);
+    serverName.textContent = nameValue;
+  } else {
+    showToast(`Joined server using invite: ${nameValue}`);
+    serverName.textContent = "Studio Lite Community";
+  }
+
+  if (descriptionValue) {
+    console.log("Description:", descriptionValue);
+  }
+
+  serverInput.value = "";
+  descriptionInput.value = "";
+  closeModal();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeModal();
+    sidebar.classList.remove("open");
+  }
+});
+
+setActiveTab("announcements");
+applySearchFilter("");
